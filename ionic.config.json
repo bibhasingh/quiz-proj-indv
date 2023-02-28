@@ -1,0 +1,7 @@
+{
+  "name": "quiz-proj-indv",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
