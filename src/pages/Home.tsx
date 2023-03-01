@@ -22,7 +22,15 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <QuizCard />
+        <QuizCard
+          question={"Identify the below code"}
+          code={" <h1>Header1</h1>"}
+          option1={"HTML"}
+          option2={"CSS"}
+          option3={"JavaScript"}
+          option4={"React"}
+          answer={"HTML"}
+        />
       </IonContent>
     </IonPage>
   );

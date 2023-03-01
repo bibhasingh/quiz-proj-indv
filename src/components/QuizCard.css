@@ -1,0 +1,7 @@
+.correctAnswer {
+  --background: green;
+}
+
+.wrongAnswer {
+  --background: red;
+}
