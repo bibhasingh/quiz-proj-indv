@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./QuizCard.css";
 import {
   IonCard,
@@ -73,7 +73,7 @@ function QuizCard(props: any) {
       <IonButton className={style4} onClick={checkAnswerD}>
         {props.option4}
       </IonButton>
-      <IonButton>Moreinfo</IonButton>
+      <IonButton>MoreInfo</IonButton>
       <IonButton>Next</IonButton>
     </>
   );
