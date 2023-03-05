@@ -115,7 +115,7 @@ function QuizCard(props: any) {
 
   return (
     <IonPage>
-      <IonHeader className="scoreStyle">
+      <IonHeader>
         <IonToolbar>
           <IonTitle> Score : {score}</IonTitle>
         </IonToolbar>
