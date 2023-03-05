@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
+
+import { useHistory } from "react-router";
 import "./QuizCard.css";
+
 import {
   IonCard,
   IonItem,
@@ -8,74 +11,141 @@ import {
   IonCardContent,
   IonButton,
   useIonAlert,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonFooter,
+  IonContent,
+  IonPage,
 } from "@ionic/react";
 
 function QuizCard(props: any) {
   const [alert] = useIonAlert();
-  const [style1, setStyle1] = useState("beforeAnswer");
-  const [style2, setStyle2] = useState("beforeAnswer");
-  const [style3, setStyle3] = useState("beforeAnswer");
-  const [style4, setStyle4] = useState("beforeAnswer");
+  const history = useHistory();
+  const [style1, setStyle1] = useState("beforeAnswer commonStyle");
+  const [style2, setStyle2] = useState("beforeAnswer commonStyle");
+  const [style3, setStyle3] = useState("beforeAnswer commonStyle");
+  const [style4, setStyle4] = useState("beforeAnswer commonStyle");
+  const [questionSet, questionSetMod] = useState(props.questionSet[0]);
+  const [counter, setCounter] = useState(0);
+  const [ans, setAns] = useState(true);
+  const [score, setScore] = useState(props.score);
 
   const checkAnswerA = () => {
-    if (props.option1 === props.answer) {
-      setStyle1("correctAnswer");
-      alert({ message: "That's Correct", buttons: ["ok"] });
-    } else {
-      setStyle1("wrongAnswer");
-      alert({ message: "That's wrong", buttons: ["ok"] });
+    setAns(false);
+    if (ans) {
+      if (questionSet.option1 === questionSet.answer) {
+        setStyle1("correctAnswer commonStyle");
+        setScore(score + 10);
+        alert({ message: "That's Correct", buttons: ["ok"] });
+      } else {
+        setStyle1("wrongAnswer commonStyle");
+        alert({ message: "That's wrong", buttons: ["ok"] });
+      }
     }
   };
   const checkAnswerB = () => {
-    if (props.option2 === props.answer) {
-      setStyle2("correctAnswer");
-      alert({ message: "That's Correct", buttons: ["ok"] });
-    } else {
-      setStyle2("wrongAnswer");
-      alert({ message: "That's wrong", buttons: ["ok"] });
+    setAns(false);
+    if (ans) {
+      if (questionSet.option2 === questionSet.answer) {
+        setStyle2("correctAnswer commonStyle");
+        setScore(score + 10);
+        alert({ message: "That's Correct", buttons: ["ok"] });
+      } else {
+        setStyle2("wrongAnswer commonStyle");
+        alert({ message: "That's wrong", buttons: ["ok"] });
+      }
     }
   };
   const checkAnswerC = () => {
-    if (props.option3 === props.answer) {
-      setStyle3("correctAnswer");
-      alert({ message: "That's Correct", buttons: ["ok"] });
-    } else {
-      setStyle3("wrongAnswer");
-      alert({ message: "That's wrong", buttons: ["ok"] });
+    setAns(false);
+    if (ans) {
+      if (questionSet.option3 === questionSet.answer) {
+        setStyle3("correctAnswer commonStyle");
+        setScore(score + 10);
+        alert({ message: "That's Correct", buttons: ["ok"] });
+      } else {
+        setStyle3("wrongAnswer commonStyle");
+        alert({ message: "That's wrong", buttons: ["ok"] });
+      }
     }
   };
   const checkAnswerD = () => {
-    if (props.option4 === props.answer) {
-      setStyle4("correctAnswer");
-      alert({ message: "That's Correct", buttons: ["ok"] });
-    } else {
-      setStyle4("wrongAnswer");
-      alert({ message: "That's wrong", buttons: ["ok"] });
+    setAns(false);
+    if (ans) {
+      if (questionSet.option4 === questionSet.answer) {
+        setStyle4("correctAnswer commonStyle");
+        setScore(score + 10);
+        alert({ message: "That's Correct", buttons: ["ok"] });
+      } else {
+        setStyle4("wrongAnswer commonStyle");
+        alert({ message: "That's wrong", buttons: ["ok"] });
+      }
     }
   };
+  const preQues = () => {
+    setCounter(counter - 1);
+    let i = counter - 1;
+    setStyle1("beforeAnswer commonStyle");
+    setStyle2("beforeAnswer commonStyle");
+    setStyle3("beforeAnswer commonStyle");
+    setStyle4("beforeAnswer commonStyle");
+    setAns(true);
+    if (i > 0) {
+      questionSetMod(props.questionSet[i]);
+    } else {
+      history.push("/home");
+    }
+  };
+  const nextQues = () => {
+    setCounter(counter + 1);
+    let j = counter + 1;
+
+    if (props.questionSet.length > j) {
+      setStyle1("beforeAnswer commonStyle");
+      setStyle2("beforeAnswer commonStyle");
+      setStyle3("beforeAnswer commonStyle");
+      setStyle4("beforeAnswer commonStyle");
+      setAns(true);
+      questionSetMod(props.questionSet[j]);
+    } else {
+      alert({ message: "There is no more question", buttons: ["ok"] });
+    }
+  };
+
   return (
-    <>
-      <IonItem>
-        <IonLabel>{props.question}</IonLabel>
-      </IonItem>
-      <IonCard>
-        <IonCardContent>{props.code}</IonCardContent>
-      </IonCard>
-      <IonButton className={style1} onClick={checkAnswerA}>
-        {props.option1}
-      </IonButton>
-      <IonButton className={style2} onClick={checkAnswerB}>
-        {props.option2}
-      </IonButton>
-      <IonButton className={style3} onClick={checkAnswerC}>
-        {props.option3}
-      </IonButton>
-      <IonButton className={style4} onClick={checkAnswerD}>
-        {props.option4}
-      </IonButton>
-      <IonButton>MoreInfo</IonButton>
-      <IonButton>Next</IonButton>
-    </>
+    <IonPage>
+      <IonHeader className="scoreStyle">
+        <IonToolbar>
+          <IonTitle> Score : {score}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className="quizBody">
+        <IonItem>
+          <IonLabel>{questionSet.question}</IonLabel>
+        </IonItem>
+        <IonCard>
+          <IonCardContent>{questionSet.code}</IonCardContent>
+        </IonCard>
+        <IonButton className={style1} onClick={checkAnswerA}>
+          {questionSet.option1}
+        </IonButton>
+        <IonButton className={style2} onClick={checkAnswerB}>
+          {questionSet.option2}
+        </IonButton>
+        <IonButton className={style3} onClick={checkAnswerC}>
+          {questionSet.option3}
+        </IonButton>
+        <IonButton className={style4} onClick={checkAnswerD}>
+          {questionSet.option4}
+        </IonButton>
+        <IonButton className="infoStyle">MoreInfo</IonButton>
+      </IonContent>
+      <IonFooter className="ion-footer navStyle">
+        <IonButton onClick={preQues}>Previous</IonButton>
+        <IonButton onClick={nextQues}>Next</IonButton>
+      </IonFooter>
+    </IonPage>
   );
 }
 

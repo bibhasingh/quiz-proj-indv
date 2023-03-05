@@ -5,3 +5,25 @@
 .wrongAnswer {
   --background: red;
 }
+.commonStyle {
+  display: block;
+  margin: 20px 30%;
+}
+.infoStyle {
+  margin-top: 80px;
+  margin-left: 30%;
+  margin-right: 30%;
+
+  display: block;
+}
+.navStyle {
+  display: flex;
+  gap: 55%;
+  align-items: center;
+}
+.quizBody {
+  --background: rgb(83, 95, 83);
+}
+.scoreStyle {
+  --background: blue;
+}

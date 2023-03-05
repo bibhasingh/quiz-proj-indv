@@ -1,37 +1,24 @@
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import QuizCard from "../components/QuizCard";
+import { IonContent, IonPage, IonButton, IonFooter } from "@ionic/react";
+import { useHistory } from "react-router";
 import "./Home.css";
 
 const Home: React.FC = () => {
+  const history = useHistory();
+  const startQuiz = () => {
+    history.push("/question");
+  };
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Score : 00</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <QuizCard
-          question={"Identify the below code"}
-          code={" <h1>Header1</h1>"}
-          option1={"HTML"}
-          option2={"CSS"}
-          option3={"JavaScript"}
-          option4={"React"}
-          answer={"HTML"}
-        />
+      <IonContent className="ion-text-center ion-margin-top ion-content">
+        <h2>Welcome </h2>
+        <h2> To </h2>
+        <h2> Tech Quiz</h2>
       </IonContent>
+      <IonFooter className="ion-footer ion-text-center">
+        <IonButton className="startButton" onClick={startQuiz}>
+          Let's begin!
+        </IonButton>
+      </IonFooter>
     </IonPage>
   );
 };
