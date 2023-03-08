@@ -5,10 +5,8 @@ import { useHistory } from "react-router";
 import "./QuizCard.css";
 
 import {
-  IonCard,
   IonItem,
   IonLabel,
-  IonCardContent,
   IonButton,
   IonHeader,
   IonToolbar,
