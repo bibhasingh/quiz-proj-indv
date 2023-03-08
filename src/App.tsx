@@ -36,8 +36,17 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
-          <Route exact path="/question">
-            <Question />
+          <Route exact path="/htmlQuestion">
+            <Question questionSet={"HtmlQuestionSet"} />
+          </Route>
+          <Route exact path="/cssQuestion">
+            <Question questionSet={"CssQuestionSet"} />
+          </Route>
+          <Route exact path="/javascriptQuestion">
+            <Question questionSet={"JavaScriptQuestionSet"} />
+          </Route>
+          <Route exact path="/reactQuestion">
+            <Question questionSet={"ReactQuestionSet"} />
           </Route>
         </Switch>
       </IonRouterOutlet>

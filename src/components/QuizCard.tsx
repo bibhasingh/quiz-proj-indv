@@ -10,17 +10,17 @@ import {
   IonLabel,
   IonCardContent,
   IonButton,
-  useIonAlert,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonFooter,
   IonContent,
   IonPage,
+  useIonToast,
 } from "@ionic/react";
 
 function QuizCard(props: any) {
-  const [alert] = useIonAlert();
+  const [alert] = useIonToast();
   const history = useHistory();
   const [style1, setStyle1] = useState("beforeAnswer commonStyle");
   const [style2, setStyle2] = useState("beforeAnswer commonStyle");
@@ -37,10 +37,14 @@ function QuizCard(props: any) {
       if (questionSet.option1 === questionSet.answer) {
         setStyle1("correctAnswer commonStyle");
         setScore(score + 10);
-        alert({ message: "That's Correct", buttons: ["ok"] });
+        alert({
+          message: "That's Correct",
+          duration: 1500,
+          position: "middle",
+        });
       } else {
         setStyle1("wrongAnswer commonStyle");
-        alert({ message: "That's wrong", buttons: ["ok"] });
+        alert({ message: "That's wrong", duration: 1500, position: "middle" });
       }
     }
   };
@@ -50,10 +54,14 @@ function QuizCard(props: any) {
       if (questionSet.option2 === questionSet.answer) {
         setStyle2("correctAnswer commonStyle");
         setScore(score + 10);
-        alert({ message: "That's Correct", buttons: ["ok"] });
+        alert({
+          message: "That's Correct",
+          duration: 1500,
+          position: "middle",
+        });
       } else {
         setStyle2("wrongAnswer commonStyle");
-        alert({ message: "That's wrong", buttons: ["ok"] });
+        alert({ message: "That's wrong", duration: 1500, position: "middle" });
       }
     }
   };
@@ -63,10 +71,14 @@ function QuizCard(props: any) {
       if (questionSet.option3 === questionSet.answer) {
         setStyle3("correctAnswer commonStyle");
         setScore(score + 10);
-        alert({ message: "That's Correct", buttons: ["ok"] });
+        alert({
+          message: "That's Correct",
+          duration: 1500,
+          position: "middle",
+        });
       } else {
         setStyle3("wrongAnswer commonStyle");
-        alert({ message: "That's wrong", buttons: ["ok"] });
+        alert({ message: "That's wrong", duration: 1500, position: "middle" });
       }
     }
   };
@@ -76,10 +88,14 @@ function QuizCard(props: any) {
       if (questionSet.option4 === questionSet.answer) {
         setStyle4("correctAnswer commonStyle");
         setScore(score + 10);
-        alert({ message: "That's Correct", buttons: ["ok"] });
+        alert({
+          message: "That's Correct",
+          duration: 1500,
+          position: "middle",
+        });
       } else {
         setStyle4("wrongAnswer commonStyle");
-        alert({ message: "That's wrong", buttons: ["ok"] });
+        alert({ message: "That's wrong", duration: 1500, position: "middle" });
       }
     }
   };
@@ -98,10 +114,10 @@ function QuizCard(props: any) {
     }
   };
   const nextQues = () => {
-    setCounter(counter + 1);
     let j = counter + 1;
 
     if (props.questionSet.length > j) {
+      setCounter(counter + 1);
       setStyle1("beforeAnswer commonStyle");
       setStyle2("beforeAnswer commonStyle");
       setStyle3("beforeAnswer commonStyle");
@@ -109,7 +125,11 @@ function QuizCard(props: any) {
       setAns(true);
       questionSetMod(props.questionSet[j]);
     } else {
-      alert({ message: "There is no more question", buttons: ["ok"] });
+      alert({
+        message: "There is no more question",
+        duration: 1500,
+        position: "middle",
+      });
     }
   };
 
@@ -124,9 +144,9 @@ function QuizCard(props: any) {
         <IonItem>
           <IonLabel>{questionSet.question}</IonLabel>
         </IonItem>
-        <IonCard>
+        {/* <IonCard>
           <IonCardContent>{questionSet.code}</IonCardContent>
-        </IonCard>
+        </IonCard> */}
         <IonButton className={style1} onClick={checkAnswerA}>
           {questionSet.option1}
         </IonButton>
@@ -139,7 +159,9 @@ function QuizCard(props: any) {
         <IonButton className={style4} onClick={checkAnswerD}>
           {questionSet.option4}
         </IonButton>
-        <IonButton className="infoStyle">MoreInfo</IonButton>
+        <IonButton href={questionSet.moreInfo} className="infoStyle">
+          MoreInfo
+        </IonButton>
       </IonContent>
       <IonFooter className="ion-footer navStyle">
         <IonButton onClick={preQues}>Previous</IonButton>

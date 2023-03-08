@@ -1,15 +1,27 @@
 .ion-content {
   --background: rgb(100, 237, 212);
-  --padding-top: 200px;
+}
+
+.heading {
+  padding-top: 100px;
+  margin-bottom: 100px;
 }
 .ion-footer {
-  background-color: rgb(138, 67, 9);
+  background-color: rgb(52, 37, 51);
   height: 100px;
 }
-.startButton {
+.footerButton {
   --background: rgb(196, 251, 252);
   color: black;
   margin-top: 30px;
+  height: 40px;
+  font-size: xx-large;
+}
+
+.startQuiz {
+  display: block;
+  margin: 20px 20%;
+  --background: rgb(233, 139, 15);
 }
 
 h2 {
